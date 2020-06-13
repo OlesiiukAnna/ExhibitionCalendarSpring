@@ -1,0 +1,4 @@
+*.iml
+/target
+/.idea
+/src/main/java/ua/external/accessConstants

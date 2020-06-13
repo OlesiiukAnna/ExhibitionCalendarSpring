@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="ua.external"/>
+
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="ua.external.data.entity"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">validate</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://127.0.0.1:5432/exhibition"/>
+        <property name="username" value="postgres"/>
+        <property name="password" value="root"/>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <tx:annotation-driven/>
+
+    <bean id="persistenceExceptionTranslationPostProcessor" class=
+            "org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+    <!--    mappers-->
+
+    <bean id="exhibitionHallDtoMapper" class="ua.external.util.dto.mappers.ExhibitionHallMapper"/>
+    <bean id="exhibitionDtoMapper" class="ua.external.util.dto.mappers.ExhibitionMapper"/>
+    <bean id="userDtoMapper" class="ua.external.util.dto.mappers.UserMapper"/>
+    <bean id="ticketDtoMapper" class="ua.external.util.dto.mappers.TicketMapper"/>
+
+    <!--    services-->
+
+    <bean id="exhibitionHallService" class="ua.external.service.impl.ExhibitionHallServiceImpl">
+        <constructor-arg index="0" ref="exhibitionHallDao"/>
+        <constructor-arg index="1" ref="exhibitionHallDtoMapper"/>
+    </bean>
+
+    <bean id="exhibitionService" class="ua.external.service.impl.ExhibitionServiceImpl">
+        <constructor-arg index="0" ref="exhibitionDao"/>
+        <constructor-arg index="1" ref="exhibitionHallDao"/>
+        <constructor-arg index="2" ref="exhibitionDtoMapper"/>
+    </bean>
+
+    <bean id="userService" class="ua.external.service.impl.UserServiceImpl">
+        <constructor-arg index="0" ref="userDao"/>
+        <constructor-arg index="1" ref="userDtoMapper"/>
+    </bean>
+
+    <bean id="ticketService" class="ua.external.service.impl.TicketServiceImpl">
+        <constructor-arg index="0" ref="ticketDao"/>
+        <constructor-arg index="1" ref="exhibitionDao"/>
+        <constructor-arg index="2" ref="userDao"/>
+        <constructor-arg index="3" ref="ticketDtoMapper"/>
+    </bean>
+
+    <!--    controllers-->
+
+    <!--    available for all -->
+
+    <bean id="exhibitionsController" class="ua.external.controllers.ExhibitionsController">
+        <constructor-arg index="0" ref="exhibitionService"/>
+    </bean>
+
+    <bean id="exhibitionHallsController" class="ua.external.controllers.ExhibitionHallsController">
+        <constructor-arg index="0" ref="exhibitionHallService"/>
+    </bean>
+
+    <bean id="exhibitionHallController" class="ua.external.controllers.ExhibitionHallController">
+        <constructor-arg index="0" ref="exhibitionHallService"/>
+        <constructor-arg index="1" ref="exhibitionService"/>
+    </bean>
+
+<!--    user authentication actions-->
+
+    <bean id="loginController" class="ua.external.controllers.LoginController">
+        <constructor-arg index="0" ref="userService"/>
+    </bean>
+
+    <bean id="logoutController" class="ua.external.controllers.LogoutController"/>
+
+    <bean id="signUpController" class="ua.external.controllers.SignUpController">
+        <constructor-arg index="0" ref="userService"/>
+    </bean>
+
+    <bean id="deleteUserController" class="ua.external.controllers.DeleteUserController">
+        <constructor-arg index="0" ref="userService"/>
+    </bean>
+
+    <bean id="cartController" class="ua.external.controllers.CartController">
+        <constructor-arg index="0" ref="ticketService"/>
+    </bean>
+
+    <!--    visitor controllers -->
+
+    <bean id="visitorHomePageController" class="ua.external.controllers.visitor.VisitorHomePageController">
+        <constructor-arg index="0" ref="ticketService"/>
+        <constructor-arg index="1" ref="exhibitionService"/>
+    </bean>
+
+    <!--    employee controllers-->
+
+    <bean id="employeeHomePageController" class="ua.external.controllers.employee.EmployeeHomePageController">
+        <constructor-arg index="0" ref="ticketService"/>
+        <constructor-arg index="1" ref="exhibitionService"/>
+    </bean>
+
+    <bean id="ticketsController" class="ua.external.controllers.employee.TicketsController">
+        <constructor-arg index="0" ref="ticketService"/>
+        <constructor-arg index="1" ref="userService"/>
+        <constructor-arg index="2" ref="exhibitionService"/>
+    </bean>
+
+    <bean id="registerNewExhibitionController" class="ua.external.controllers.employee.RegisterNewExhibitionController">
+        <constructor-arg index="0" ref="exhibitionService"/>
+        <constructor-arg index="1" ref="exhibitionHallService"/>
+    </bean>
+
+    <bean id="registerNewExhibitionHallController" class="ua.external.controllers.employee.RegisterNewExhibitionHallController">
+        <constructor-arg index="0" ref="exhibitionHallService"/>
+    </bean>
+
+    <bean id="registerNewEmployeeController" class="ua.external.controllers.employee.RegisterNewEmployeeController">
+        <constructor-arg index="0" ref="userService"/>
+    </bean>
+
+</beans>
