@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository("exhibitionHallDao")
-//@Transactional(propagation = Propagation.MANDATORY)
 public class ExhibitionHallDaoImpl implements ExhibitionHallDao<ExhibitionHall> {
     private Logger logger = LoggerFactory.getLogger(ExhibitionHallDaoImpl.class);
 
@@ -56,7 +55,7 @@ public class ExhibitionHallDaoImpl implements ExhibitionHallDao<ExhibitionHall> 
         return typedQuery.getResultList();
     }
 
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional(propagation = Propagation.MANDATORY, noRollbackFor = DuplicateValueException.class)
     @Override
     public boolean save(ExhibitionHall exhibitionHall) {
         Optional<ExhibitionHall> getExhibitionHall = getByName(exhibitionHall.getName());

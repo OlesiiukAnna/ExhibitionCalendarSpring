@@ -40,7 +40,7 @@
                 </p>
             </c:if>
 
-            <form method="post" action="/employee/register-new-exhibition" role="form" class="form-horizontal">
+            <form method="post" action="${pageContext.request.contextPath}/employee/register-new-exhibition" role="form" class="form-horizontal">
                 <div class="form-group">
                     <label for="InputExhibitionName" class="control-label">
                         <fmt:message key="form.exhibition.name"/>

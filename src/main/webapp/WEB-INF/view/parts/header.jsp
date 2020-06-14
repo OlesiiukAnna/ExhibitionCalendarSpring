@@ -18,7 +18,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/">
                 <b style="color: whitesmoke">
                     <fmt:message key="menu.logo"/>
                 </b>
@@ -29,14 +29,14 @@
                 <c:when test="${sessionScope.userInSystem}">
                     <div class="navbar-form navbar-right">
                         <div class="form-group">
-                            <form action="/cart">
+                            <form action="${pageContext.request.contextPath}/cart">
                                 <button type="submit" class="btn btn-success"><fmt:message key="ref.cart"/></button>
                             </form>
                         </div>
                         <c:choose>
                             <c:when test="${sessionScope.user.role eq 'EMPLOYEE'}">
                                 <div class="form-group">
-                                    <form method="get" action="/employee-home-page">
+                                    <form method="get" action="${pageContext.request.contextPath}/employee-home-page">
                                         <button type="submit" class="btn btn-primary">
                                             <fmt:message key="ref.homePage"/>
                                         </button>
@@ -45,7 +45,7 @@
                             </c:when>
                             <c:otherwise>
                                 <div class="form-group">
-                                    <form method="get" action="/visitor-home-page">
+                                    <form method="get" action="${pageContext.request.contextPath}/visitor-home-page">
                                         <button type="submit" class="btn btn-primary">
                                             <fmt:message key="ref.homePage"/>
                                         </button>
@@ -54,7 +54,7 @@
                             </c:otherwise>
                         </c:choose>
                         <div class="form-group">
-                            <form action="/logout">
+                            <form action="${pageContext.request.contextPath}/logout">
                                 <button type="submit" class="btn btn-info">
                                     <fmt:message key="ref.logout"/>
                                 </button>
@@ -64,7 +64,7 @@
                 </c:when>
                 <c:otherwise>
                     <div class="navbar-form navbar-right">
-                        <form action="/login" method="post">
+                        <form action="${pageContext.request.contextPath}/login" method="post">
                             <div class="form-group">
                                 <input type="email" placeholder="<fmt:message key="placeholder.email"/>"
                                        class="form-control" name="email">
@@ -75,7 +75,7 @@
                             </div>
                             <button type="submit" class="btn btn-success"><fmt:message key="ref.login"/></button>
                         </form>
-                        <a href="/signup"><fmt:message key="ref.signup"/></a>
+                        <a href="${pageContext.request.contextPath}/signup"><fmt:message key="ref.signup"/></a>
                     </div>
                 </c:otherwise>
             </c:choose>

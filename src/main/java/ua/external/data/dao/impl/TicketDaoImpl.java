@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository("ticketDao")
-//@Transactional(propagation = Propagation.MANDATORY)
+@Transactional
 public class TicketDaoImpl implements TicketDao<Ticket> {
     private Logger logger = LoggerFactory.getLogger(TicketDaoImpl.class);
 
@@ -60,7 +60,7 @@ public class TicketDaoImpl implements TicketDao<Ticket> {
         return Math.toIntExact(typedQuery.getSingleResult());
     }
 
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional(propagation = Propagation.MANDATORY, noRollbackFor = DuplicateValueException.class)
     @Override
     public boolean save(Ticket ticket) {
         Optional<Ticket> getTicket = Optional.empty();

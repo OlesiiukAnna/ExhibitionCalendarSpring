@@ -29,7 +29,7 @@
                 </p>
             </c:if>
 
-            <form method="post" action="/delete-user" role="form" class="form-horizontal">
+            <form method="post" action="${pageContext.request.contextPath}/delete-user" role="form" class="form-horizontal">
                 <div class="form-group">
                     <label for="InputEmail" class="control-label"><fmt:message key="form.email"/></label>
                     <input type="email" name="email" class="form-control" id="InputEmail"

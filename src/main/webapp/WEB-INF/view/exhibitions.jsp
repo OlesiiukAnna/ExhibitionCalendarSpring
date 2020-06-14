@@ -51,7 +51,7 @@
                     <tr>
                         <td colspan="2">
                             <div class="form-group">
-                                <form method="get" action="/exhibition-hall">
+                                <form method="get" action="${pageContext.request.contextPath}/exhibition-hall">
                                     <input type="number" hidden name="exhibition-hall-id"
                                            value="${exhibition.exhibitionHallId}"/>
                                     <button type="submit" class="btn btn-link btn-block">
@@ -64,7 +64,7 @@
                     <c:choose>
                         <c:when test="${sessionScope.userInSystem}">
                             <div class="form-group">
-                                <form method="post" action="/exhibitions" role="form">
+                                <form method="post" action="${pageContext.request.contextPath}/exhibitions" role="form">
                                     <label><input type="number" hidden name="exhibition-id"
                                                   value="${exhibition.id}"/></label>
                                     <label><input type="text" hidden name="exhibition-name"
@@ -105,9 +105,9 @@
                             <tr>
                                 <td colspan="2">
                                     <fmt:message key="table.exhibition.loginMessage1"/>
-                                    <a href="/login"><fmt:message key="ref.login"/></a>
+                                    <a href="${pageContext.request.contextPath}/login"><fmt:message key="ref.login"/></a>
                                     <fmt:message key="table.exhibition.loginMessage2"/>
-                                    <a href="/signup"><fmt:message key="ref.signup"/></a>
+                                    <a href="${pageContext.request.contextPath}/signup"><fmt:message key="ref.signup"/></a>
                                 </td>
                             </tr>
                         </c:otherwise>

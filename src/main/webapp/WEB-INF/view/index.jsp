@@ -34,11 +34,11 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <h2><fmt:message key="headline.exhibitions"/></h2>
-            <a href="/exhibitions"><fmt:message key="ref.exhibitions"/></a>
+            <a href="${pageContext.request.contextPath}/exhibitions"><fmt:message key="ref.exhibitions"/></a>
         </div>
         <div class="col-md-6">
             <h2><fmt:message key="headline.exhibitionHalls"/></h2>
-            <a href="/exhibition-halls"><fmt:message key="ref.exhibitionHalls"/></a>
+            <a href="${pageContext.request.contextPath}/exhibition-halls"><fmt:message key="ref.exhibitionHalls"/></a>
         </div>
     </div>
 </div>

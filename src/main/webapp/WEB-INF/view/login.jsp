@@ -30,7 +30,7 @@
                 </p>
             </c:if>
 
-            <form method="post" action="login" role="form" class="form-horizontal">
+            <form method="post" action="${pageContext.request.contextPath}/login" role="form" class="form-horizontal">
                 <div class="form-group">
                     <label for="InputEmail" class="control-label"><fmt:message key="form.email"/></label>
                     <input type="email" name="email" class="form-control" id="InputEmail"

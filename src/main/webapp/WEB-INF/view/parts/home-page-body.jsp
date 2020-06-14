@@ -16,7 +16,7 @@
             <h1><fmt:message key="headline.greeting"/> <c:out value="${sessionScope.user.firstName}"/></h1>
         </div>
         <div class="col-md-2">
-            <a href="/delete-user" class="btn btn-outline-warning" style="color: coral" role="button">
+            <a href="${pageContext.request.contextPath}/delete-user" class="btn btn-outline-warning" style="color: coral" role="button">
                 <fmt:message key="ref.deleteAccount"/>
             </a>
         </div>
@@ -70,7 +70,7 @@
                                     <c:choose>
                                         <c:when test="${sessionScope.user.role eq 'EMPLOYEE'}">
                                             <div class="form-group">
-                                                <form method="post" action="/employee-home-page">
+                                                <form method="post" action="${pageContext.request.contextPath}/employee-home-page">
                                                     <input type="hidden" name="ticket-to-delete" value="${ticket.id}">
                                                     <button type="submit" class="btn btn-warning btn-block">
                                                         <fmt:message key="ref.delete"/>
@@ -80,7 +80,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <div class="form-group">
-                                                <form method="post" action="/visitor-home-page">
+                                                <form method="post" action="${pageContext.request.contextPath}/visitor-home-page">
                                                     <input type="hidden" name="ticket-to-delete" value="${ticket.id}">
                                                     <button type="submit" class="btn btn-warning btn-block">
                                                         <fmt:message key="ref.delete"/>

@@ -25,7 +25,7 @@
                 <h1><fmt:message key="headline.error"/></h1>
                 <p><fmt:message key="info.error.text"/></p>
             </div>
-            <a href="/" class="btn btn-primary-info" role="button">
+            <a href="${pageContext.request.contextPath}/" class="btn btn-primary-info" role="button">
                 <fmt:message key="ref.goToMainPage"/>
             </a>
         </div>

@@ -52,7 +52,7 @@
             <p class="text-info">
                 <fmt:message key="info.noTickets"/>
             </p>
-            <a href="/exhibitions" class="btn btn-info" role="button">
+            <a href="${pageContext.request.contextPath}/exhibitions" class="btn btn-info" role="button">
                 <fmt:message key="info.lookForExhibitions"/>
             </a>
         </c:when>
@@ -63,7 +63,7 @@
                 </p>
             </div>
             <div class="table-responsive">
-                <form method="post" action="/cart-save">
+                <form method="post" action="${pageContext.request.contextPath}/cart-save">
                     <table class="table table-bordered table-hover">
                         <thead>
                         <tr class="active">
@@ -99,7 +99,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <a href="/cart-delete-ticket?ticket-id-to-delete=${wantedTicket.idInCart}"
+                                    <a href="${pageContext.request.contextPath}/cart-delete-ticket?ticket-id-to-delete=${wantedTicket.idInCart}"
                                        class="btn btn-warning btn-block" role="button">
                                         <fmt:message key="ref.delete"/></a>
                                 </td>

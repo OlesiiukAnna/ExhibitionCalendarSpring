@@ -46,7 +46,7 @@
 
             <p class="text-info"><fmt:message key="info.registerNewEmployee"/></p>
 
-            <form method="post" action="/employee/register-new-employee" role="form" class="form-horizontal">
+            <form method="post" action="${pageContext.request.contextPath}/employee/register-new-employee" role="form" class="form-horizontal">
                 <div class="form-group">
                     <label for="InputEmail" class="control-label"><fmt:message key="form.email"/></label>
                     <input type="email" name="employee-email" class="form-control" id="InputEmail"

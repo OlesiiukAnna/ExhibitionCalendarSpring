@@ -12,22 +12,22 @@
     <div class="btn-group btn-block">
         <div class="row">
             <div class="col-md-3">
-                <a href="/employee/tickets" class="btn btn-link btn-block" role="button">
+                <a href="${pageContext.request.contextPath}/employee/tickets" class="btn btn-link btn-block" role="button">
                     <fmt:message key="ref.allTickets"/>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="/employee/register-new-exhibition" class="btn btn-link btn-block" role="button">
+                <a href="${pageContext.request.contextPath}/employee/register-new-exhibition" class="btn btn-link btn-block" role="button">
                     <fmt:message key="ref.registerNewExhibition"/>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="/employee/register-new-exhibition-hall" class="btn btn-link btn-block" role="button">
+                <a href="${pageContext.request.contextPath}/employee/register-new-exhibition-hall" class="btn btn-link btn-block" role="button">
                     <fmt:message key="ref.registerNewExhibitionHall"/>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="/employee/register-new-employee" class="btn btn-link btn-block" role="button">
+                <a href="${pageContext.request.contextPath}/employee/register-new-employee" class="btn btn-link btn-block" role="button">
                     <fmt:message key="ref.registerNewEmployee"/>
                 </a>
             </div>

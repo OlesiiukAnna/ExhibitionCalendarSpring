@@ -25,7 +25,7 @@
         </c:forEach>
     </div>
     <p>
-        <a href="cart" class="btn btn-outline-success" role="button" style="color: seagreen">
+        <a href="${pageContext.request.contextPath}/cart" class="btn btn-outline-success" role="button" style="color: seagreen">
             <fmt:message key="ref.goToCart"/>
         </a>
     </p>

@@ -24,7 +24,7 @@
     <div class="row">
         <c:forEach var="exhibitionHall" items="${exhibitionHalls}">
             <div class="col-md-4">
-                <form method="get" action="exhibition-hall">
+                <form method="get" action="${pageContext.request.contextPath}/exhibition-hall">
                     <input type="number" hidden name="exhibition-hall-id" value="${exhibitionHall.id}"/>
                     <button type="submit" class="btn btn-primary btn-block">
                         <c:out value="${exhibitionHall.name}"/>
